@@ -7,10 +7,22 @@ git config --global --list
 
 git init 
 
-git add *.js *.jpe?g
+$ git remote -v
+CKAD    https://github.com/ouaatyaa/ckad (fetch)
+CKAD    https://github.com/ouaatyaa/ckad (push)
+
+git remote add CKAD  https://github.com/ouaatyaa/ckad
 
 # Ajoute tous les fichiers
+git add *.js *.jpe?g
 git add .
+# Exclude tous les fichiers
+git config --global core.excludesfile [file]
+
+git commit -m "add documentation to README"
+
+git push -u CKAD master
+
 
 $ git log                               <<< Tres imprat pour savoir le HEAD est ou
 commit dcc8cf1132a42898ba769b1ee2fad8a6eab2b82b (HEAD -> master)
@@ -21,7 +33,23 @@ Date:   Fri Oct 21 22:53:30 2022 +0100
 
 M1374@WX-PF1TBF73 MINGW64 ~/Desktop/cka (master)
 
+$ git show dcc8cf1132a42898ba769b1ee2fad8a6eab2b82b   <<<< 
+commit dcc8cf1132a42898ba769b1ee2fad8a6eab2b82b
+Author: ouaatyaa <ouaatyaa@gmail.com>
+Date:   Fri Oct 21 22:53:30 2022 +0100
 
+    CKAD prep v1
+
+diff --git a/00-Core.txt b/00-Core.txt
+new file mode 100644
+index 0000000..60a9678
+--- /dev/null
++++ b/00-Core.txt
+@@ -0,0 +1,31 @@
++-------------------------------------   servies & deployment : scaling kandiro des replica dial les  pods dial chi deployment
++kubectl run monpod --rm  -it --image busybox --command -- sh -c "sleep 600"   //--rm -it  dima hado bjoj
++kubectl exec monpod  -it -- bash
++kubectl create de
 ----------------------------SHARE & UPDATE
 
 <<<<<<<<<<<<<<<<<<<<<<  add a git URL as an alias
@@ -38,10 +66,6 @@ git pull
 
 
 
-
-
-
-
 # Simple annulation du git add
 git restore --staged fichier
 
@@ -52,9 +76,6 @@ git reset [fichier]
 
 # Restaure le répertoire de travail dans son état d'avant modif
 git reset --hard
-
-# Nous voulons commiter des modifications du README
-git commit -m "add documentation to README"
 
 
 # Toutes les modifications des fichiers trackés sont intégrées au commit
