@@ -1,11 +1,9 @@
-git config --global -l
-
 git config --global user.name "ouaatyaa"
 git config --global user.email "ouaatyaa@gmail.com"
 
-git config --global --list
+git config --global --list (-l)
 
-git init 
+git init ( ou git clone du repo cree sur gui)
 
 $ git remote -v
 CKAD    https://github.com/ouaatyaa/ckad (fetch)
@@ -16,15 +14,15 @@ git remote add CKAD  https://github.com/ouaatyaa/ckad
 # Ajoute tous les fichiers
 git add *.js *.jpe?g
 git add .
-# Exclude tous les fichiers
+# Exclude 
 git config --global core.excludesfile [file]
 
-git commit -m "add documentation to README"
+git commit -m "Ceci est un commaintaire"
 
 git push -u CKAD master
 
 
-$ git log                               <<< Tres imprat pour savoir le HEAD est ou
+$ git log  (OR git log --stat -M )           <<< Tres imprat pour savoir le HEAD est ou
 commit dcc8cf1132a42898ba769b1ee2fad8a6eab2b82b (HEAD -> master)
 Author: ouaatyaa <ouaatyaa@gmail.com>
 Date:   Fri Oct 21 22:53:30 2022 +0100
@@ -51,32 +49,6 @@ index 0000000..60a9678
 +kubectl exec monpod  -it -- bash
 +kubectl create de
 ----------------------------SHARE & UPDATE
-
-<<<<<<<<<<<<<<<<<<<<<<  add a git URL as an alias
-git remote add [alias] [url]
-<<<<<<<<<<<<<<<<<<<<<   fetch down all the branches from that Git remote
-git fetch [alias]
-<<<<<<<<<<<<<<<<<<<<    merge a remote branch into your current branch to bring it up to date
-git merge [alias]/[branch]
-<<<<<<<<<<<<<<<<<<<<<   Transmit local branch commits to the remote repository branch
-git push [alias] [branch]
-<<<<<<<<<<<<<<<<<       fetch and merge any commits from the tracking remote branch
-git pull
-
-
-
-
-# Simple annulation du git add
-git restore --staged fichier
-
-# Restauration du fichier dans son état avant modification
-git restore fichier
-
-git reset [fichier]
-
-# Restaure le répertoire de travail dans son état d'avant modif
-git reset --hard
-
 
 # Toutes les modifications des fichiers trackés sont intégrées au commit
 git commit -a
