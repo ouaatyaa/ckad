@@ -2,7 +2,7 @@ git config --global user.name "ouaatyaa"
 git config --global user.email "ouaatyaa@gmail.com"
 git config --global --list (-l)
 
-git init ( ou git clone du repo cree sur gui)
+git init ( ou git clone the repo created on gui)
 
 $ git remote -v
 CKAD    https://github.com/ouaatyaa/ckad (fetch)
@@ -17,7 +17,7 @@ git add .
 git config --global core.excludesfile [file]
 --------------------------------------------------daily steps
 git add *.txt
-git commit -m " commaintaire daily steps"
+git commit -m "comments daily steps"
 git push -u CKAD master
 
 
@@ -31,22 +31,8 @@ Date:   Fri Oct 21 22:53:30 2022 +0100
 M1374@WX-PF1TBF73 MINGW64 ~/Desktop/cka (master)
 
 $ git show dcc8cf1132a42898ba769b1ee2fad8a6eab2b82b   <<<< 
-commit dcc8cf1132a42898ba769b1ee2fad8a6eab2b82b
-Author: ouaatyaa <ouaatyaa@gmail.com>
-Date:   Fri Oct 21 22:53:30 2022 +0100
+...
 
-    CKAD prep v1
-
-diff --git a/00-Core.txt b/00-Core.txt
-new file mode 100644
-index 0000000..60a9678
---- /dev/null
-+++ b/00-Core.txt
-@@ -0,0 +1,31 @@
-+-------------------------------------   servies & deployment : scaling kandiro des replica dial les  pods dial chi deployment
-+kubectl run monpod --rm  -it --image busybox --command -- sh -c "sleep 600"   //--rm -it  dima hado bjoj
-+kubectl exec monpod  -it -- bash
-+kubectl create de
 ----------------------------SHARE & UPDATE
 
 # Toutes les modifications des fichiers trackés sont intégrées au commit
