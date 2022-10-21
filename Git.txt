@@ -1,6 +1,5 @@
 git config --global user.name "ouaatyaa"
 git config --global user.email "ouaatyaa@gmail.com"
-
 git config --global --list (-l)
 
 git init ( ou git clone du repo cree sur gui)
@@ -16,9 +15,9 @@ git add *.js *.jpe?g
 git add .
 # Exclude 
 git config --global core.excludesfile [file]
-
-git commit -m "Ceci est un commaintaire"
-
+--------------------------------------------------daily steps
+git add *.txt
+git commit -m " commaintaire daily steps"
 git push -u CKAD master
 
 
