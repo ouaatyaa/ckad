@@ -1,0 +1,43 @@
+git config --global -l
+
+git config --global user.name "ouaatyaa"
+git config --global user.email "ouaatyaa@gmail.com"
+
+git config --global --list
+
+git add *.js *.jpe?g
+
+# Ajoute tous les fichiers
+git add .
+
+
+# Simple annulation du git add
+git restore --staged fichier
+
+# Restauration du fichier dans son état avant modification
+git restore fichier
+
+git reset [fichier]
+
+# Restaure le répertoire de travail dans son état d'avant modif
+git reset --hard
+
+# Nous voulons commiter des modifications du README
+git commit -m "add documentation to README"
+
+
+# Toutes les modifications des fichiers trackés sont intégrées au commit
+git commit -a
+
+# On peut bien entendu combiner les options
+git commit -am "add documentation to README"
+
+# Effacer un fichier (arrête le suivi et efface la fichier du répertoire de travail)
+git rm monfichier
+
+# Arrêter de suivre un fichier mais ne pas l'effacer
+git rm --cached monfichier
+
+# Déplacer des fichiers
+git mv fichierSrc fichierDest
+

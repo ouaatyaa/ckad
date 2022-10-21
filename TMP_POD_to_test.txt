@@ -1,0 +1,48 @@
+k run tmp --restart=Never --rm -i --image=nginx:alpine -- curl -m 5 10.12.2.15
+k run tmp --restart=Never --rm -i --image=busybox      -- wget -O- 10.12.2.15
+
+Implement a liveness-probe which checks the container to be reachable on port 80 :
+
+        livenessProbe:                  # add
+          tcpSocket:                    # add
+            port: 80                    # add
+          initialDelaySeconds: 10       # add
+          periodSeconds: 15             # add
+
+k create ns sun
+k -n sun create deploy suny --replicas 4 --image nginx:1.17.3-alpine do
+k -n sun create deployment sunny --image=nginx:1.17.3-alpine $do > p2_sunny.yaml
+
+serviceAccountName: sa-sun-deploy  <<< ADD this to yaml
+ 
+k -n sun expose deployment sunny --name sun-srv --port 9999 --target-port 80
+
+k run tmp --restart=Never --rm -i --image=nginx:alpine -- curl -m 5 sun-srv.sun:9999
+
+<<< Note the SERVICE.NAMESPACE
+
+Because the Service is in a different Namespace as our temporary Pod, 
+it is reachable using the names sun-srv.sun or fully: sun-srv.sun.svc.cluster.local.
+
+# /opt/course/p2/sunny_status_command.sh
+kubectl -n sun get deployment sunny
+
+
+Service earth-3cc-web doesn't have endpoints. This 
+could be a selector/label misconfiguration or 
+the endpoints are actually not available/ready.
+
+➜ k -n earth get ep
+NAME                ENDPOINTS                                           AGE
+earth-2x3-api-svc   10.0.0.10:80,10.0.1.5:80,10.0.2.4:80                116m
+earth-2x3-web-svc   10.0.0.11:80,10.0.0.12:80,10.0.1.6:80 + 3 more...   116m
+earth-3cc-web    
+
+➜ k run tmp --restart=Never --rm -i --image=nginx:alpine -- curl -m 5 earth-3cc-web.earth:6363
+If you don't see a command prompt, try pressing enter.
+  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5000 milliseconds
+pod "tmp" deleted
+pod default/tmp terminated (Error)
+
+

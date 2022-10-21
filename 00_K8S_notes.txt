@@ -1,0 +1,63 @@
+kubectl  explain pod  
+kubectl  api-resources
+
+kubectl config get-contexts
+kubectl config set-context nsuser1 --namespace nspace1  --user kubernetes-admin --cluster kubernetes
+kubectl config use-context nsuser1   // switch to new context 
+
+
+kubectl get componentstatuses // kubectl get cs
+kubectl get all
+kubectl get namespace  // kubectl get ns
+
+kubectl config view
+kubectl config current-context/use-context
+kubectl describe nodes
+kubectl describe pods nginx...
+kubectl describe service nginx 
+kubectl describe deploy nginx
+kubectl get events 
+kubectl get pods --show-labels
+kubectl get pods -l env=prod
+kubectl get apiservices
+kubectl get cluser-info
+kubectl version --short
+kubectl get storageclass
+kubectl axplain pod                 // equivalent du man par expl : man pod
+
+kubectl  get cs/ev/ns/no/po/ds
+kubectl  get ds -n kube-system                     //DeamonSet (nodeAfinity)
+kubectl  exec -ti monpod -c mondebian /bin/bash    // se connecter au contenaier dans le pod
+
+kubectl api-resources -o wide |more     // tres bien pour aficher les truc dial k8s be7al les nodes,les ns,les pod ,les svc ...kolchi
+
+[root@k8snode ~]# kubectl api-versions  |more    <<  hadi kat3tik les version dial api tu en aura besoin dans les fichies yml de config
+admissionregistration.k8s.io/v1
+apiextensions.k8s.io/v1
+apiregistration.k8s.io/v1
+apps/v1
+
+
+root@kmaster:~# kubectl  api-resources
+NAME                              SHORTNAMES   APIGROUP                       NAMESPACED   KIND
+bindings                                                                      true         Binding
+componentstatuses                 cs                                          false        ComponentStatus
+configmaps                        cm                                          true         ConfigMap
+endpoints                         ep                                          true         Endpoints
+events                            ev 
+
+
+-------------------------------------------------------- CEPH provisioner cephfs & rbd
+https://computingforgeeks.com/ceph-persistent-storage-for-kubernetes-with-cephfs/
+https://www.youtube.com/watch?v=X1FiU-6SwDc&ab_channel=SUSE
+
+-------------------------------------------------------- ADD worker
+
+https://www.youtube.com/watch?v=j3ft8k0HC8s&list=PL34sAs7_26wP009Cl03TZbtRFZ2DMJovl&index=5
+
+------ TODO:
+PV/PVC
+secret (env + sec volume )
+
+Deep dive:
+https://www.youtube.com/watch?v=ONP4kFUDX7o

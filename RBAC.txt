@@ -1,0 +1,9 @@
+ curl https://localhost:6443 -k \
+> --cacert ca.crt \
+> --key apiserver-kubelet-client.key \
+> --cert apiserver-kubelet-client.crt
+
+
+
+
+

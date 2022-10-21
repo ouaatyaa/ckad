@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-pod
+spec:
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      command: ["sleep", "3600"]
+      securityContext:              <<< can be in both POD spec OR container but container overide
+         runAsUser: 1000             <<<  POD
+         capabilities:              <<< only a container level  !!!
+           add: ["SYS_TIME"]
+

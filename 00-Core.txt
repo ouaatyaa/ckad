@@ -1,0 +1,31 @@
+-------------------------------------   servies & deployment : scaling kandiro des replica dial les  pods dial chi deployment
+kubectl run monpod --rm  -it --image busybox --command -- sh -c "sleep 600"   //--rm -it  dima hado bjoj
+kubectl exec monpod  -it -- bash
+kubectl create deployment mydeploy --image busybox  --dry-run=client  -o yaml
+kubectl create deployment monnginx --image nginx 
+kubectl create service nodeport monnginx --tcp 8080:80
+kubectl scale deployment monnginx --replicas=2         // les pods dial  monnginx ghadi wiloui deux pods
+kubectl scale deployment monnginx --replicas=1         // pour annuler est revenir un seul pods
+
+kubectl autoscale deployment monnginx --min=2 --max=10  // selon la demande et la charg sur le nginx
+
+kubectl exec -ti monnginx-xxx /bin/bash
+echo "instance 1" > /usr/share/nginx/html/index.html
+
+----------------------------------  label  & selector ------------------------------
+kubectl run monnginx  --image nginx --labels "env=prod,group=front"
+kubectl run monnginx2 --image nginx --labels "env=devel,group=front"
+
+kubectl label pods monnginx2-5d7c66c95d-qj27m --overwrite "group=back"
+kubectl get   pods --selector "env=devel" --show-label
+
+kubectl delete pods --all
+
+--------------------------------------// save/apply  config en yaml :-----------------------------------
+
+kubectl  get deploy  monnginx -o yaml  >mydeploy.yml
+kubectl  get svc     monnginx -o yaml  >mysvc.yml
+cat mydeploy.yml mysvc.yml >myapp.yml    // ajouter la separation avant apiversion par les '---' 
+                                        //pour restaurer le service ila mcha lik ola ila biti tcopih fi custer akhor
+
+
