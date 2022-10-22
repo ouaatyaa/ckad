@@ -1,3 +1,0 @@
-redinessProbe :   des test avant de dire que le POD concerné est READY .
-
-livenessProbe :   Des controle durant l'excution de POD , cela l'etat de l'app decicé de recré le pod.

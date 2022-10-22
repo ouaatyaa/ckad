@@ -1,6 +1,6 @@
 
 
-1 -----------------   POD with emptyDir + CM env + command date>log
+1 -----------------   POD busybox + vol emptyDir + CM env + command date>log
 2 ------------------  deploy redis + 2 vol emptyDir et CM 
 
 apiVersion: v1
