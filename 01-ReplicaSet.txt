@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicaSet
+metadata:
+  labels:
+     app: myapp
+     type:front-end
+  name: myrs
+spec:
+---------------------------------------begin POD
+--template:
+-----metadata:
+       labels:
+         app: myapp
+         type:front-end
+       name: mypod
+-----spec:
+       containers:
+           - name: nginx
+             image: nginx
+----------------------------------------end POD
+--replicas: 3
+--selector:            <<  hadi n9dro nmanagiw 7eta les autres pod non cree par la RS
+     matchLabels:
+       type:front-end   
+
+kubectl scale --replicas=6 rs myrs 
+kubectl scale --replicas=6 -f myrs.yml

@@ -1,0 +1,42 @@
+kubectl create deploy nginx-deployment --image:1.23.1 --replicas 2
+
+kubectl set image deployment/nginx-deployment nginx=nginx:1.22.0
+kubectl edit deployment/nginx-deployment
+kubectl rollout status deployment/nginx-deployment
+
+kubectl rollout history deployment/nginx-deployment
+kubectl rollout history deployment/nginx-deployment --revision=2
+
+kubectl rollout undo deployment/nginx-deployment
+kubectl rollout undo deployment/nginx-deployment --to-revision=2
+
+
+kubectl run httpd --image=httpd:alpine --port=80 --expose
+
+apiVersion: v1
+kind: Deployment
+metadata:
+  labels:
+     app: myapp
+     type:front-end
+  name: mydeploy
+spec:
+---------------------------------------begin POD
+--template:
+-----metadata:
+       labels:
+         app: myapp
+         type:front-end
+       name: mypod
+-----spec:
+       containers:
+           - name: nginx
+             image: nginx
+----------------------------------------end POD
+--replicas: 3           << create an RS automatique
+--selector:            
+     matchLabels:
+       type:front-end   
+
+kubectl scale --replicas=6 deploy mydeploy 
+kubectl scale --replicas=6 -f mydeploy.yml

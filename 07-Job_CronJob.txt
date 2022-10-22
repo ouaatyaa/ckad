@@ -1,0 +1,63 @@
+
+
+kubectl exec -ti monpod -c mondebian /bin/bash    // se connecter au contenaier dans le pod
+
+-------------------------------------------------------------------------------------------------------
+------------------------------------------------ JOBS -------------------------------------------------------
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+   name: helloworldjob
+spec:
+  completions: 2         >>>>  le job se lansera 2 fois
+  parallelism: 2         <<<< il 3endek comletions 10 et paralelism 2 ghadi ilanci lik 5 dial les pods
+  backofflimit: 2       <<< ila kan kay faild ghadi 3awed 3 dial merrat
+  ttlSecondsAfterFinished: 100  <<< had loption tadir clean up dial les jobs li salaw mé i faut enablé future dans les manifest k8s
+  template:
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["echo", "hello kubernetes !!!"]
+      restartPolicy: Never
+
+----- shouf les action li te9der tdir avec les job homa:
+Default run
+killing and restart pod
+completions     >>> completions: 2
+parallelism
+backofflimit
+activeDeadlineSeconds 
+
+-----------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------Cronjob----------------------------------------------------------
+apiVersion: batch/v1beta1 
+kind: CronJob
+metadata:
+  name: helloworld-cron
+spec:
+  schedule: "* * * * *"      <<< chaque minute il cree un job qui cree un pod
+  suspend: true         <<hna tu peu suspend le cron a true oubien le relance a false apres tu apply le yaml file por appliké  
+  concurrencyPolicy: Forbid  <<< interdir le chavechement des jobs Allow par defaut 
+  jobTemplate:
+     spec:
+       template:
+         spec:
+           containers:
+           - name: busybox
+             image: busybox
+             command: ["echo", "hello kubernetes !!!"]
+           restartPolicy: Never
+-------------------------------------------------------------------
+Every 2.0s: kubectl get all                                                                
+
+NAME                                   READY   STATUS      RESTARTS   AGE
+pod/helloworld-cron-1661644980-2xkc9   0/1     Completed   0          2m48s
+
+NAME                                   COMPLETIONS   DURATION   AGE
+job.batch/helloworld-cron-1661644980   1/1           15s        2m48s
+
+NAME                            SCHEDULE    SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+cronjob.batch/helloworld-cron   * * * * *   True      0        2m51s           2m52s
+
